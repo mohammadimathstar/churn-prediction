@@ -32,14 +32,18 @@ jobs:
     - name: Install dependecies
       run: uv sync
 
-    # 5. Train model
+    # 5 Lint and Format Check
+    - name: Lint with Ruff
+      run: uv run ruff check . # Fails the pipeline if code is messy!
+
+    # 6. Train model
     - name: Train model
       run: uv run python -m src.train
 
-    # 6. Run pytest
+    # 7. Run pytest
     - name: Run test
       run: uv run pytest
 
-    # 7. build docker image
+    # 8. build docker image
     - name: Build docker image
       run: docker build -t churn-api:test .

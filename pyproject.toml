@@ -9,8 +9,21 @@ dependencies = [
     "httpx>=0.28.1",
     "joblib>=1.6.0",
     "pandas>=3.0.5",
+    "pre-commit>=4.6.2",
     "pydantic>=2.13.5",
     "pytest>=9.1.1",
+    "ruff>=0.16.7",
     "scikit-learn>=1.9.1",
     "uvicorn>=0.52.4",
 ]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"] # Ignore line-too-long, Ruff handles formatting
+
+[tool.ruff.format]
+quote-style = "double"

@@ -4,7 +4,7 @@ This project demonstrates an end-to-end MLOps pipeline for predicting customer c
 
 ## Model Performance
 
-**Current Model Accuracy:** <!-- -->
+**Current Model Accuracy:** <!-- ACCURACY_START -->0.0000<!-- ACCURACY_END -->
 
 
 

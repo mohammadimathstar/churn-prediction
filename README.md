@@ -2,6 +2,11 @@
 
 This project demonstrates an end-to-end MLOps pipeline for predicting customer churn. It focuses on **production-readiness**, featuring a containerized REST API, automated testing, strict code quality checks, and a fully automated CI/CD pipeline that publishes versioned Docker images to the GitHub Container Registry (GHCR).
 
+## Model Performance
+
+**Current Model Accuracy:** <!-- -->
+
+
 
 ## Architecture & Flow
 1. **Training Pipeline (`src/`):** Downloads the IBM Telco Customer Churn dataset, cleans the data, and trains a Scikit-Learn `RandomForestClassifier`. Crucially, it saves a Scikit-Learn Pipeline object (preprocessing + model) as `model.joblib` to prevent train-serving skew.

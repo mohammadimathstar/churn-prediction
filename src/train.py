@@ -40,6 +40,12 @@ def train_and_save_model():
     joblib.dump(pipeline, model_path)
     print(f"Model saved to {model_path}")
 
+    # Save accuracy to a file for CI/CD to read
+    metrics_path = os.path.join(os.path.dirname(__file__), "..", "accuracy.txt")
+    with open(metrics_path, "w") as f:
+        f.write(f"{acc:.4f}")
+    print(f"Accuracy saved to {metrics_path}")
+
 
 if __name__ == "__main__":
     train_and_save_model()

@@ -1,4 +1,4 @@
-name: CI
+name: CI/CD
 
 # Trigger the workflow on push or pull request to the main branch
 on:
@@ -40,6 +40,32 @@ jobs:
     - name: Run test
       run: uv run pytest
 
+    # 7. Lint with Ruff (Assuming you added this!)
+    - name: Lint with Ruff
+      run: uv run ruff check 
+    
+      # -------------------------------------------------------------
+    # CONTINUOUS DEPLOYMENT (CD) TO GITHUB CONTAINER REGISTRY
+    # -------------------------------------------------------------
+    
+    # 8. Log into GitHub Container Registry
+    - name: Log in to GHCR
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        # GITHUB_TOKEN is automatically provided by GitHub Actions
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    # 9. Build and Push the Docker Image
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v6
+      with:
+        context: .
+        push: true
+        # Tags the image as ghcr.io/YOUR_GITHUB_USERNAME/REPO_NAME:latest
+        tags: ghcr.io/${{ github.repository }}:latest
+
     # 7. build docker image
-    - name: Build docker image
-      run: docker build -t churn-api:test .
+    # - name: Build docker image
+    #   run: docker build -t churn-api:test .

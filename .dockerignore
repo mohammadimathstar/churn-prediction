@@ -1,0 +1,17 @@
+# .dockerignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Ignore environment files so they aren't baked into the image
+.env
+
+# Ignore data and git folders
+data/
+.git/
+.github/

@@ -1,0 +1,9 @@
+services:
+  churn-app:
+    build: .
+    container_name: churn_api_service
+    ports:
+      - "${APP_PORT}:8000"
+    environment:
+      - PORT=8000
+    restart: unless-stopped

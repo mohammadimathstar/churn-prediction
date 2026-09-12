@@ -38,7 +38,7 @@ jobs:
 
     # 6. Run pytest
     - name: Run test
-      run: pytest
+      run: uv run pytest
 
     # 7. build docker image
     - name: Build docker image

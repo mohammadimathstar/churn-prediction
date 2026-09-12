@@ -20,14 +20,16 @@ This project demonstrates an end-to-end MLOps pipeline for predicting customer c
   - Builds the Docker image and pushes it to GHCR with a version tag based on the Git commit SHA.
 
 ## Tech Stack
-Category	Technology
-Language	Python 3.12
-Machine Learning	Scikit-Learn, Pandas, Joblib
-API Framework	FastAPI, Uvicorn, Pydantic
-Dependency Mgmt	uv, pyproject.toml
-Containerization	Docker, Docker Compose
-CI/CD & Registry	GitHub Actions, GitHub Container Registry (GHCR)
-Code Quality	Ruff (Linting & Formatting), Pre-commit hooks
+
+| Category |	Technology |
+|----------|-------------|
+| Language	| Python 3.12 |
+| Machine Learning | 	Scikit-Learn, Pandas, Joblib |
+| API Framework	|  FastAPI, Uvicorn, Pydantic  |
+| Dependency |  Mgmt	uv, pyproject.toml |
+| Containerization | 	Docker, Docker Compose |
+| CI/CD & Registry	| GitHub Actions, GitHub Container Registry (GHCR) |
+| Code Quality |	Ruff (Linting & Formatting), Pre-commit hooks |
 
 
 ## Project Structure
@@ -37,7 +39,8 @@ churn-prediction/
 │   └── ci.yml               # CI/CD pipeline definition
 ├── app/
 │   └── main.py              # FastAPI application and endpoints
-├── src/│   ├── preprocess.py        # Data loading, cleaning, and SK-Learn Pipeline
+├── src/
+│   ├── preprocess.py        # Data loading, cleaning, and SK-Learn Pipeline
 │   └── train.py             # Model training script
 ├── tests/
 │   ├── test_app.py          # API unit tests (Pytest)

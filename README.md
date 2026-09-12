@@ -36,7 +36,8 @@ churn-prediction/
 ├── .github/workflows/
 │   └── ci.yml               # CI/CD pipeline definition
 ├── app/
-│   └── main.py              # FastAPI application and endpoints├── src/│   ├── preprocess.py        # Data loading, cleaning, and SK-Learn Pipeline
+│   └── main.py              # FastAPI application and endpoints
+├── src/│   ├── preprocess.py        # Data loading, cleaning, and SK-Learn Pipeline
 │   └── train.py             # Model training script
 ├── tests/
 │   ├── test_app.py          # API unit tests (Pytest)
@@ -117,7 +118,7 @@ docker run -d -p 8000:8000 ghcr.io/YOUR_GITHUB_USERNAME/churn-prediction:latest
 
 
 
-## How to use your deployed image (The Final Test)
+## How to use the deployed image
 
 Open your terminal and run this command (replace YOUR_GITHUB_USERNAME with your actual username, and make sure it's lowercase).
 ```bash

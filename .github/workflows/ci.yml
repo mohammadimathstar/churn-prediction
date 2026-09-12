@@ -7,6 +7,11 @@ on:
   pull_request: 
     branches: [ "main" ]
 
+permissions:
+  contents: read
+  packages: write
+
+  
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
@@ -57,7 +62,18 @@ jobs:
         # GITHUB_TOKEN is automatically provided by GitHub Actions
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    # 9. Build and Push the Docker Image
+    # 9. Extract metadata (tags, labels) for Docker
+    # This automatically generates tags based on the Git commit SHA and branch!
+    - name: Extract metadata for Docker
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ghcr.io/${{ github.repository }}
+        tags: |
+          type=sha,format=short # Creates a tag like: sha-1a2b3c4
+          type=raw,value=latest # Also tags as 'latest' for convenience
+
+    # 10. Build and Push the Docker Image
     - name: Build and push Docker image
       uses: docker/build-push-action@v6
       with:
@@ -66,6 +82,9 @@ jobs:
         # Tags the image as ghcr.io/YOUR_GITHUB_USERNAME/REPO_NAME:latest
         tags: ghcr.io/${{ github.repository }}:latest
 
-    # 7. build docker image
-    # - name: Build docker image
-    #   run: docker build -t churn-api:test .
+# about step 9:
+# When the GitHub Action runs, it will build the image and push it to GHCR with two tags:
+
+# ghcr.io/your_username/churn-prediction:sha-a1b2c3d (Immutable, traceable version)
+# ghcr.io/your_username/churn-prediction:latest (Points to the most recent build)
+# If you go to your GitHub Packages page, you will see a list of versions. If the newest one breaks, you can tell your server to pull sha-a1b2c3d to instantly roll back to the working version!

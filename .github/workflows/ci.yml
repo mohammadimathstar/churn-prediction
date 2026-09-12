@@ -34,7 +34,7 @@ jobs:
 
     # 5. Train model
     - name: Train model
-      run: python -m src.train
+      run: uv run python -m src.train
 
     # 6. Run pytest
     - name: Run test
